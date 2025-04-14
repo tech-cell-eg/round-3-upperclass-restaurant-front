@@ -42,7 +42,7 @@ const ContentShop = () => {
     },
   ];
   return (
-    <main className="p-8 h-screen overflow-y-auto bg-black text-white">
+    <main className="p-8 md:h-screen md:overflow-y-auto bg-black text-white">
       {cardsdata.map((card, index) => (
         <CardShop
           key={index}
