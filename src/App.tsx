@@ -1,6 +1,11 @@
-import "./App.css";
+import Shop from "./pages/Shop";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <Shop />
+    </>
+  );
 }
 
 export default App;
