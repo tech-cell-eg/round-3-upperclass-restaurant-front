@@ -1,48 +1,79 @@
-// const Footer = () => {
-//   return (
-//     <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen bg-black text-white">
-//       {/* Left Image Panel */}
-//       <div className="relative hidden md:block">
-//         <div className="sticky top-0 h-screen w-full">
-//           <img
-//             src="/blog.png" // أو رابط الصورة
-//             alt="Blog"
-//             className="h-full w-full object-cover"
-//           />
-//           <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 p-8 flex flex-col justify-between">
-//             <div>
-//               <h2 className="text-lg text-white">Blog</h2>
-//               <h1 className="text-4xl md:text-6xl font-bold mt-2">Latest News</h1>
-//             </div>
-//             <div className="flex gap-2">
-//               <button className="bg-white text-black px-4 py-2 rounded-full">Menu</button>
-//               <button className="bg-white text-black px-4 py-2 rounded-full">Restaurant</button>
-//               <button className="bg-white text-black px-4 py-2 rounded-full">Classes</button>
-//               <button className="bg-white text-black px-4 py-2 rounded-full">Book a Table</button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
+import { Link } from "react-router-dom";
 
-//       {/* Right Content Panel */}
-//       <div className="overflow-y-auto p-6 space-y-10">
-//         {Array.from({ length: 6 }).map((_, i) => (
-//           <div key={i} className="flex gap-4 items-start">
-//             <img
-//               src={`https://source.unsplash.com/400x300/?restaurant,food,${i}`}
-//               className="w-40 h-28 object-cover rounded-md"
-//               alt=""
-//             />
-//             <div>
-//               <p className="text-sm text-gray-400">September 19, 2022</p>
-//               <h3 className="text-xl font-semibold">Blog Post Title {i + 1}</h3>
-//               <p className="text-gray-300 text-sm mt-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
+export const Footer = () => {
+  return (
+    <footer className="pt-16 mt-16  border-t border-gray-800">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-11">
+        {/* العمود الأول */}
+        <div className="mb-5 md:mb-0 text-center md:text-left">
+          <h2 className="font-chillax font-medium text-2xl text-text_default mb-5">
+            nique.
+          </h2>
+          <p className="font-chillax font-normal text-base text-text_muted">
+            By <span className="text-[#face8d] ">Pavel Goia</span>
+          </p>
+          <p className="font-chillax font-normal text-base text-text_muted">
+            Powered by <span className="text-[#face8d]">Webflow</span>
+          </p>
+        </div>
 
-// export default BlogLayout;
+        {/* العمود الثاني والثالث جنب بعض ومتمركزين */}
+        <div className="w-full px-4 flex justify-center md:block col-span-1 md:col-span-2">
+          <div className="grid grid-cols-2 gap-8 w-full max-w-md text-center md:text-left">
+            {/* العمود الثاني */}
+            <div>
+              <h5 className="font-chillax font-normal text-base mb-5">Pages</h5>
+              <ul className="space-y-5 font-chillax font-normal text-base text-text_muted ">
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">Menu</Link>
+                </li>
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">Restaurant</Link>
+                </li>
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">Classes</Link>
+                </li>
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">Book a Table</Link>
+                </li>
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">Contact</Link>
+                </li>
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">Blog</Link>
+                </li>
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">Shop</Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* العمود الثالث */}
+            <div>
+              <h5 className="font-chillax font-normal text-base mb-5">
+                Utility Pages
+              </h5>
+              <ul className="space-y-5 font-chillax font-normal text-base text-text_muted">
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">Styleguide</Link>
+                </li>
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">Licensing</Link>
+                </li>
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">Changelog</Link>
+                </li>
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">404 Page</Link>
+                </li>
+                <li className="hover:text-[#face8d]">
+                  <Link to="#">Password Protected</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
