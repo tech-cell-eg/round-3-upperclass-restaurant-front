@@ -1,9 +1,11 @@
 import Shop from "./pages/Shop";
 
 function App() {
-  return <>
-  <Shop />
-  </>
+  return (
+    <>
+      <Shop />
+    </>
+  );
 }
 
 export default App;
