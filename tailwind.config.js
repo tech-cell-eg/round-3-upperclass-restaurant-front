@@ -26,7 +26,6 @@ export default {
         icon_primary: "#FACE8D",
         icon_inverse: "#081212",
       },
-
       borderRadius: {
         image: "10px",
         nav: "100px", // iclude Button in nav
