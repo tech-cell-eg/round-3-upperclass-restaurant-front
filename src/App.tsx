@@ -4,6 +4,7 @@ import HomePage from "./pages/Home";
 
 function App() {
   return (
+
     <BrowserRouter basename="/round-3-upperclass-restaurant-front/">
       <Routes>
         <>
