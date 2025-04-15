@@ -1,5 +1,7 @@
 // src/components/Sidebar.tsx
 import React from "react";
+import NavBar from "./NavBar";
+import { Link } from "react-router-dom";
 
 interface sildebarProps {
   background: string;
@@ -18,9 +20,14 @@ const Sidebar: React.FC<sildebarProps> = ({ title, subtitle, background }) => {
         backgroundPosition: "center",
       }}
     >
-      <div className="logo flex items-center justify-center text-white">
-        <p className="font-chillax text-xl font-medium">nique.</p>
-      </div>
+        <Link
+        to="/"
+        className="relative z-10 w-full justify-center text-center"
+      >
+        <p className="font-Chillax mt-10 text-2xl sm:text-3xl font-medium text-text_default">
+          nique.
+        </p>
+      </Link>
 
       <div className="mainsec text-white flex items-center justify-center">
         <div>
@@ -32,15 +39,7 @@ const Sidebar: React.FC<sildebarProps> = ({ title, subtitle, background }) => {
       </div>
 
       <div className="nav flex space-x-4 text-center justify-center ">
-        <a href="" className="text-white">
-          Home
-        </a>
-        <a href="" className="text-white">
-          Home
-        </a>
-        <a href="" className="text-white">
-          Home
-        </a>
+      <NavBar positionClass={false}/>
       </div>
     </aside>
   );

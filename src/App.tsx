@@ -8,6 +8,7 @@ import HomePage from "./pages/Home";
 import Menu from './components/Menu/Menu';
 import Layout from './Layout';
 import Book from './components/Book/Book';
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="blog" element={<Blog />} />
           <Route path="menu" element={<Menu />} />
           <Route path="book" element={<Book />} />
+          <Route path="contact" element={<Contact />} />
           <Route
             path="blog/:id"
             element={

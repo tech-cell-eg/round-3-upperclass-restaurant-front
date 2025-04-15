@@ -1,13 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
-const NavBar: React.FC = () => {
+interface NavBarProps {
+  positionClass? : boolean;
+}
+
+const NavBar: React.FC<NavBarProps>= ({positionClass = true}) => {
+  // Pages Bar and Open Hours
   const [isBarsMenuOpen, setIsBarsMenuOpen] = useState(false);
   const [isHoursMenuOpen, setIsHoursMenuOpen] = useState(false);
 
+// Cart Icon
+  const [isCartOpen, setIsCartOpen] = useState(false);
+const cartRef = useRef<HTMLDivElement>(null);
+
+// To Navigate To Book Page
+  const navigate = useNavigate();
+  const goToBook = () => {
+    navigate('/Book');
+  };
+
+
+  // Close Cart Bar
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
+        setIsCartOpen(false);
+      }
+    };
+    if (isCartOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+  
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isCartOpen]);
+
+
   return (
-    <div className="bg-white p-4 rounded-full flex gap-4 items-center justify-center text-center mx-auto mb-4 absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
+    <>
+    <div className={`bg-white p-4 rounded-full flex gap-4 items-center justify-center text-center mx-auto mb-4 absolute  bottom-4 z-20 ${positionClass ? 
+    'left-1/2 transform -translate-x-1/2' : ''
+} `}>
       {/* Bars Icon Hover */}
       <div
         onMouseEnter={() => setIsBarsMenuOpen(true)}
@@ -22,53 +61,52 @@ const NavBar: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="absolute bottom-full left-0 bg-white rounded-md shadow-md p-2 w-48 mb-2 z-30"
+              className="absolute bottom-full left-0 bg-white rounded-md shadow-md p-2 w-48 mb-10 z-30"
             >
               <ul className="space-y-1">
                 <li>
-                  <a
-                    href="#"
-                    className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
+                  <p
+                    className="flex text-text_inverse justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
                   >
                     Pages
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="flex justify-between items-center px-4 py-2 hover:bg-gray-100"
-                  >
-                    Menu <i className="pi pi-arrow-right"></i>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
-                  >
-                    Restaurant <i className="pi pi-arrow-right"></i>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
-                  >
-                    Contact <i className="pi pi-arrow-right"></i>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
-                  >
-                    Shop <i className="pi pi-arrow-right"></i>
-                  </a>
+                  </p>
                 </li>
                 <li>
                   <Link
-                    to="/blog"
-                    className="flex justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
+                    to="/Menu"
+                    className="flex text-text_inverse justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
+                  >
+                    Menu <i className="pi pi-arrow-right"></i>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="#"
+                    className="flex text-text_inverse justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
+                  >
+                    Restaurant <i className="pi pi-arrow-right"></i>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/Contact"
+                    className="flex text-text_inverse justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
+                  >
+                    Contact <i className="pi pi-arrow-right"></i>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="Shop"
+                    className="flex text-text_inverse justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
+                  >
+                    Shop <i className="pi pi-arrow-right"></i>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/Blog"
+                    className="flex text-text_inverse justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
                   >
                     Blog <i className="pi pi-arrow-right"></i>
                   </Link>
@@ -93,23 +131,23 @@ const NavBar: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="absolute bottom-full left-0 bg-white rounded-md shadow-md p-2 w-48 mb-2 z-30"
+              className="absolute bottom-full left-0 bg-white rounded-md shadow-md mb-10 p-2 w-48  z-30"
             >
               <div>
                 <h3 className="font-semibold mb-2 text-left text-text_inverse font-chillax">
                   Opening Hours
                 </h3>
                 <div className="flex justify-between">
-                  <p className="font-medium font-chillax">Mon</p>
-                  <p className="float-right font-chillax">closed</p>
+                  <p className="font-medium font-chillax text-text_inverse">Mon</p>
+                  <p className="float-right font-chillax text-text_inverse">closed</p>
                 </div>
                 <div className="flex justify-between">
-                  <p className="font-medium font-chillax">Tue - Fri</p>
-                  <p className="float-right font-chillax">4pm - 8pm</p>
+                  <p className="font-medium font-chillax text-text_inverse">Tue - Fri</p>
+                  <p className="float-right font-chillax text-text_inverse">4pm - 8pm</p>
                 </div>
                 <div className="flex justify-between">
-                  <p className="font-medium font-chillax">Sat - Sun</p>
-                  <p className="float-right font-chillax">5pm - 11pm</p>
+                  <p className="font-medium font-chillax text-text_inverse">Sat - Sun</p>
+                  <p className="float-right font-chillax text-text_inverse">5pm - 11pm</p>
                 </div>
               </div>
             </motion.div>
@@ -117,10 +155,37 @@ const NavBar: React.FC = () => {
         </AnimatePresence>
       </div>
 
-      <Link to="#">
-        <i className="pi pi-shopping-cart text-icon_inverse text-xl"></i>
-      </Link>
-      <Link to="#" className="font-chillax text-text_inverse hidden md:block">
+{/* Cart SideBar  */}
+<AnimatePresence>
+{isCartOpen && (
+  <motion.div
+  initial={{ x: "100%" }}
+  animate={{ x: 0 }}
+  exit={{ x: "100%" }}
+  transition={{ type: "tween", duration: 0.3 }}
+  className="fixed top-0 right-0 h-screen w-80 bg-bg_default shadow-lg z-50"
+  ref={cartRef}
+>
+<aside className="h-screen p-4 grid grid-rows-[auto_1fr_auto] overflow-hidden">
+<div className="flex justify-between">
+<h2 className="text-lg font-chillax font-semibold">Cart</h2>
+  <button onClick={() => setIsCartOpen(false)} className="text-sm text-text_primary hover:text-black">
+    Close
+        </button>
+</div>
+      <div className="p-4">
+        <p className="text-sm text-gray-500">No items in the cart.</p>
+      </div>
+</aside>
+</motion.div>
+)}
+</AnimatePresence>
+
+
+  <button onClick={() => setIsCartOpen(true)}>
+  <i className="pi pi-shopping-cart text-icon_inverse text-xl"></i>
+</button>
+      <Link to="Menu" className="font-chillax text-text_inverse hidden md:block">
         Menu
       </Link>
       <Link to="#" className="font-chillax text-text_inverse hidden md:block">
@@ -129,7 +194,9 @@ const NavBar: React.FC = () => {
       <Link to="#" className="font-chillax text-text_inverse hidden md:block">
         Classes
       </Link>
-      <button className="group relative bg-bg_default sm:text-base text-text_default px-4 py-2 rounded-full overflow-hidden h-10 w-40">
+      <button 
+      onClick={goToBook} 
+      className="group relative bg-bg_default sm:text-base text-text_default px-4 py-2 rounded-full overflow-hidden h-10 w-40">
         <div className="flex flex-col group-hover:animate-scrollUpDown">
           <span className="h-8 flex items-center justify-center">
             Book A Table
@@ -140,6 +207,7 @@ const NavBar: React.FC = () => {
         </div>
       </button>
     </div>
+    </>
   );
 };
 
