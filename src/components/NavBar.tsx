@@ -73,7 +73,7 @@ const cartRef = useRef<HTMLDivElement>(null);
                 </li>
                 <li>
                   <Link
-                    to="/Menu"
+                    to="/menu"
                     className="flex text-text_inverse justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
                   >
                     Menu <i className="pi pi-arrow-right"></i>
@@ -89,7 +89,7 @@ const cartRef = useRef<HTMLDivElement>(null);
                 </li>
                 <li>
                   <Link
-                    to="/Contact"
+                    to="/contact"
                     className="flex text-text_inverse justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
                   >
                     Contact <i className="pi pi-arrow-right"></i>
@@ -97,7 +97,7 @@ const cartRef = useRef<HTMLDivElement>(null);
                 </li>
                 <li>
                   <Link
-                    to="Shop"
+                    to="/shop"
                     className="flex text-text_inverse justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
                   >
                     Shop <i className="pi pi-arrow-right"></i>
@@ -105,7 +105,7 @@ const cartRef = useRef<HTMLDivElement>(null);
                 </li>
                 <li>
                   <Link
-                    to="/Blog"
+                    to="/blog"
                     className="flex text-text_inverse justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
                   >
                     Blog <i className="pi pi-arrow-right"></i>

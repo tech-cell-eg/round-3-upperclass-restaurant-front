@@ -24,17 +24,17 @@ const HomePage: React.FC = () => {
         to="/"
         className="relative z-10 w-full justify-center text-center"
       >
-        <p className="font-Chillax mt-10 text-2xl sm:text-3xl font-medium text-text_default">
+        <p className="font-chillax mt-10 text-2xl sm:text-3xl font-medium text-text_default">
           nique.
         </p>
       </Link>
 
       {/* Content over the image */}
       <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-6 sm:px-10">
-        <h1 className="font-Bitter italic text-text_primary text-3xl sm:text-5xl md:text-[80px] mb-2">
+        <h1 className="font-bitter italic text-text_primary text-3xl sm:text-5xl md:text-[80px] mb-2">
           The pure taste of
         </h1>
-        <h1 className="font-Chillax text-7xl sm:text-[160px] md:text-[160px] text-text_default mb-4">
+        <h1 className="font-chillax text-7xl sm:text-[160px] md:text-[160px] text-text_default mb-4">
           Thailand
         </h1>
         <p className="text-gray-300 max-w-xs sm:max-w-md md:max-w-xl text-md sm:text-base mb-40">

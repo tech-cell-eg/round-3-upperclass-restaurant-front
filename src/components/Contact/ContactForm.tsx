@@ -14,17 +14,17 @@ const ContactForm: React.FC = () => {
         </p>
 
         <div className="mb-4 mt-10">
-          <label className="block text-lg font-bold mb-2  font-Chillax opacity-[50%]">Name</label>
+          <label className="block text-lg font-bold mb-2  font-chillax opacity-[50%]">Name</label>
           <InputText className="w-full p-3 bg-transparent rounded border border-white opacity-[40%]" placeholder="Enter your name" />
         </div>
 
         <div className="mb-4 mt-10">
-          <label className="block text-lg font-bold mb-2  font-Chillax opacity-[50%]">Email</label>
+          <label className="block text-lg font-bold mb-2  font-chillax opacity-[50%]">Email</label>
           <InputText className="w-full p-3 bg-transparent rounded border border-white opacity-[40%]" placeholder="Your email address" />
         </div>
     
         <div className="mb-4 mt-10">
-          <label className="block text-lg font-bold mb-2  font-Chillax opacity-[50%]">Message</label>
+          <label className="block text-lg font-bold mb-2  font-chillax opacity-[50%]">Message</label>
           <InputTextarea className="w-full p-3 bg-transparent rounded border border-white opacity-[40%]" placeholder="Your message" rows={5} />
         </div>
 
