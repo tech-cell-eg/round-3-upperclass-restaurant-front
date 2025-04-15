@@ -26,12 +26,21 @@ export default {
         icon_primary: "#FACE8D",
         icon_inverse: "#081212",
       },
-
       borderRadius: {
         image: "10px",
         nav: "100px", // iclude Button in nav
         button: "500px",
         default: "16px",  // Default border div in menu section
+      },
+      keyframes: {
+        scrollUpDown: {
+          '0%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        scrollUpDown: 'scrollUpDown 0.6s ease-in-out',
       },
     },
   },
