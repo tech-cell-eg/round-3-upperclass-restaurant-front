@@ -37,7 +37,6 @@ export default function SliderClasses() {
     },
   ];
 
-  // تحويل Scroll Y إلى Scroll X
   useEffect(() => {
     const x = containerRef.current;
     const onWheel = (e: WheelEvent) => {

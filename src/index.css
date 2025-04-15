@@ -1,14 +1,5 @@
 @layer tailwind-base, primereact, tailwind-utilities;
 
-@layer tailwind-base {
-  @tailwind base;
-}
-
-@layer tailwind-utilities {
-  @tailwind components;
-  @tailwind utilities;
-}
-
 @font-face {
   font-family: "Bitter Rose";
   src: url("./fonts/Bitter\ Rose\ DEMO.otf") format("opentype");
@@ -64,32 +55,3 @@
   /* Bold */
   font-style: normal;
 }
-/*******************************************/
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-/* 
-@layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .animate-fade-in-up {
-    animation: fadeInUp 1s ease-out both;
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-} */
