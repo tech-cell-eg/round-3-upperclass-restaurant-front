@@ -4,10 +4,14 @@ import BlogDetail from "./components/Blog/BlogDetail";
 import Sidebar from "./components/Sidebar";
 import image from "../src/assets/images/shopmain.png";
 import Shop from "./pages/Shop";
+
 import HomePage from "./pages/Home";
-import Menu from './components/Menu/Menu';
+
+import Menu from "./components/Menu/Menu";
+import Book from "./components/Book/Book";
+import SliderClasses from "./components/SliderClasses";
 import Layout from './Layout';
-import Book from './components/Book/Book';
+
 
 function App() {
   return (
@@ -16,9 +20,12 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="shop" element={<Shop />} />
-          <Route path="blog" element={<Blog />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="menu" element={<Menu />} />
           <Route path="book" element={<Book />} />
+          <Route path="/classes" element={<SliderClasses />} />
+
+
           <Route
             path="blog/:id"
             element={
