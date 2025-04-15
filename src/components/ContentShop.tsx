@@ -6,35 +6,36 @@ import { Footer } from "./Footer";
 const ContentShop = () => {
   const cardsdata = [
     {
-      price: "20$",
+      
+      price: "$ 50 USD",
       title: "Gift Card",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
       image: image,
     },
     {
-      price: "20$",
+      price: "$ 50 USD",
       title: "Gift Card",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
       image: image,
     },
     {
-      price: "20$",
+      price: "$ 50 USD",
       title: "Gift Card",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
       image: image,
     },
     {
-      price: "20$",
+      price: "$ 50 USD",
       title: "Gift Card",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
       image: image,
     },
     {
-      price: "20$",
+      price: "$ 50 USD",
       title: "Gift Card",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",

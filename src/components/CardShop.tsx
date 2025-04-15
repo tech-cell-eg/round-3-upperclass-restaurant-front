@@ -14,10 +14,10 @@ const CardShop : React.FC<CardShopProps> = ({price, title, description, image}) 
                     </div>
                     <div className="text-white col-span-1 py-6 px-4 text-start ">
                         <div className=" flex items-center space-x-2">
-                            <h3 className="font-chillax font-normal text-base mb-2 text-text_primary">{price}</h3>
+                            <h3 className="font-Chillax font-normal text-base mb-2 text-text_primary">{price}</h3>
                         </div>
-                        <h4 className="font-chillax font-medium text-2xl text-text_default mb-5">{title}</h4>
-                        <p className="font-chillax font-normal text-base text-text_muted">{description}</p>
+                        <h4 className="font-Chillax font-medium text-2xl text-text_default mb-5">{title}</h4>
+                        <p className="font-Chillax font-normal text-base text-text_muted">{description}</p>
                     </div>
                 </div>
             </div>

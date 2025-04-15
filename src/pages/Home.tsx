@@ -43,7 +43,7 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* NavBar Section */}
-        <NavBar />
+        <NavBar  />
 
     </motion.div>
   );
