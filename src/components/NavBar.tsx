@@ -126,7 +126,10 @@ const NavBar: React.FC = () => {
       <Link to="#" className="font-chillax text-text_inverse hidden md:block">
         Restaurant
       </Link>
-      <Link to="#" className="font-chillax text-text_inverse hidden md:block">
+      <Link
+        to="/classes"
+        className="font-chillax text-text_inverse hidden md:block"
+      >
         Classes
       </Link>
       <button className="group relative bg-bg_default sm:text-base text-text_default px-4 py-2 rounded-full overflow-hidden h-10 w-40">
