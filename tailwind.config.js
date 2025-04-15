@@ -45,6 +45,16 @@ export default {
       animation: {
         scrollUpDown: "scrollUpDown 0.6s ease-in-out",
       },
+      keyframes: {
+        scrollUpDown: {
+          '0%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        scrollUpDown: 'scrollUpDown 0.6s ease-in-out',
+      },
     },
   },
   plugins: [],

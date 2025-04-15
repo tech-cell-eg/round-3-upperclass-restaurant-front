@@ -22,7 +22,7 @@ export const Footer = () => {
               <h5 className="font-chillax font-normal text-base mb-5">Pages</h5>
               <ul className="space-y-5 font-chillax font-normal text-base text-text_muted ">
                 <li className="hover:text-[#face8d]">
-                  <Link to="#">Menu</Link>
+                  <Link to="/">Menu</Link>
                 </li>
                 <li className="hover:text-[#face8d]">
                   <Link to="#">Restaurant</Link>
@@ -37,7 +37,7 @@ export const Footer = () => {
                   <Link to="#">Contact</Link>
                 </li>
                 <li className="hover:text-[#face8d]">
-                  <Link to="#">Blog</Link>
+                  <Link to="/blog">Blog</Link>
                 </li>
                 <li className="hover:text-[#face8d]">
                   <Link to="#">Shop</Link>
