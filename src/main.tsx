@@ -10,9 +10,3 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </PrimeReactProvider>
 );
-
-createRoot(document.getElementById("root")!).render(
-  <PrimeReactProvider>
-    <App />
-  </PrimeReactProvider>
-);

@@ -1,4 +1,3 @@
-// src/components/Blog/BlogDetail.tsx
 import { useParams } from "react-router-dom";
 import { cardsdata } from "./ContentBlog";
 import { Footer } from "../Footer";
