@@ -6,7 +6,7 @@ import ContentShopDetails from "../components/ContentShopDetails";
 const ShopDetails = () => {
   return <>
       <div className="grid grid-cols-1 h-screen md:grid-cols-2">
-          <Sidebar title="shop" subtitle="Give a gift" background={image} />
+          <Sidebar title="Gift " subtitle="Gift Card Light" background={image} />
           <ContentShopDetails />
       </div>
   </>
