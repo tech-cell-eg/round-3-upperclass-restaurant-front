@@ -191,7 +191,10 @@ const cartRef = useRef<HTMLDivElement>(null);
       <Link to="#" className="font-chillax text-text_inverse hidden md:block">
         Restaurant
       </Link>
-      <Link to="#" className="font-chillax text-text_inverse hidden md:block">
+      <Link
+        to="/classes"
+        className="font-chillax text-text_inverse hidden md:block"
+      >
         Classes
       </Link>
       <button 
