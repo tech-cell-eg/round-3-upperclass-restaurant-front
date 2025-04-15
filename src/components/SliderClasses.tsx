@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import NavBar from "./NavBar";
 
 export default function SliderClasses() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -80,7 +79,6 @@ export default function SliderClasses() {
           </div>
         ))}
       </div>
-      <NavBar />
     </div>
   );
 }
