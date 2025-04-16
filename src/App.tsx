@@ -13,6 +13,8 @@ import SliderClasses from "./components/SliderClasses";
 import ShopDetails from "./pages/ShopDetails";
 import ClassDetail from "./pages/ClassDetail";
 
+import RestaurantSlider from "./components/RestaurantSlider";
+
 function App() {
   return (
     <BrowserRouter basename="/round-3-upperclass-restaurant-front/">
@@ -27,6 +29,8 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="classes" element={<SliderClasses />} />
           <Route path="classesdetail/:id" element={<ClassDetail />} />
+
+          <Route path="restaurant" element={<RestaurantSlider />} />
           <Route
             path="blog/:id"
             element={
