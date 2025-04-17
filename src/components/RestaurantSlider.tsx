@@ -55,26 +55,26 @@ const onWheel = (e: WheelEvent) => {
       </Link>
 
 {/* Images Slides */}
-<div className="flex w-max">
+<div className="flex w-max bg-black">
       {imageList.map((src, index) => (
   <div
     key={index}
-    className="w-[50vw] h-[100vh] flex-shrink-0 flex-shrink-1"
+    className="w-[50vw] h-[100vh] flex-shrink-0"
   >
     <img
       src={src}
       alt={`slide-${index}`}
-      className="w-full h-full object-cover inset-0 "
+      className="w-full h-full object-cover "
       loading="lazy"
     />
             </div>
           ))}
 
-               {/* Text overlay with fade animation */}
-        <div
-          className={`absolute inset-0 z-10 top-0 left-0 w-full h-full flex flex-col items-center justify-center text-center 
-            bg-black bg-opacity-80 transform transition-all duration-500 ease-in-out 
-            ${isHidden ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+  {/* Text overlay with fade animation */}
+  <div
+  className={`absolute inset-0 z-10 top-0 left-0 w-full h-full flex flex-col items-center justify-center text-center 
+    bg-black bg-opacity-50 transform transition-all duration-500 ease-in-out 
+    ${isHidden ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
           <h1 className="font-bitter text-text_primary text-6xl">
             Discover
           </h1>
