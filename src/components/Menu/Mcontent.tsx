@@ -166,7 +166,8 @@ const Mcontent = () => {
     if (el && scrollContainer) {
       const offset = 80;
       const top = el.getBoundingClientRect().top + scrollContainer.scrollTop - offset;
-  
+
+      
       scrollContainer.scrollTo({
         top: top,
         behavior: "smooth",
