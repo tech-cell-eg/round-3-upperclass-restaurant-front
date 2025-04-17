@@ -13,7 +13,7 @@ const Sidebar: React.FC<sildebarProps> = ({ title, subtitle, background }) => {
   console.log(background);
   return (
     <aside
-      className="bg-black h-screen p-8 grid grid-rows-[auto_1fr_auto] overflow-hidden"
+      className="bg-black  h-screen p-8 grid grid-rows-[auto_1fr_auto] overflow-hidden"
       style={{
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
@@ -34,7 +34,7 @@ const Sidebar: React.FC<sildebarProps> = ({ title, subtitle, background }) => {
           <p className="font-bitter text-6xl font-normal text-center text-text_primary">
             {title}
           </p>
-          <h1 className="font-chillax text-7xl font-medium">{subtitle}</h1>
+          <h1 className="font-chillax text-4xl md:text-7xl font-medium">{subtitle}</h1>
         </div>
       </div>
 

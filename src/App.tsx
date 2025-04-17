@@ -10,6 +10,9 @@ import Layout from './Layout';
 import Book from './components/Book/Book';
 import Contact from "./pages/Contact";
 import SliderClasses from "./components/SliderClasses";
+import ShopDetails from "./pages/ShopDetails";
+import ClassDetail from "./pages/ClassDetail";
+
 import RestaurantSlider from "./components/RestaurantSlider";
 
 function App() {
@@ -19,11 +22,14 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="shop" element={<Shop />} />
+          <Route path="shopdetails" element={<ShopDetails />} />
           <Route path="blog" element={<Blog />} />
           <Route path="menu" element={<Menu />} />
           <Route path="book" element={<Book />} />
           <Route path="contact" element={<Contact />} />
           <Route path="classes" element={<SliderClasses />} />
+          <Route path="classesdetail/:id" element={<ClassDetail />} />
+
           <Route path="restaurant" element={<RestaurantSlider />} />
           <Route
             path="blog/:id"
