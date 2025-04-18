@@ -24,7 +24,7 @@ const InputFeild: React.FC<InputFeildProps> = ({ type, id, name, value, onChange
                 placeholder={placeholder}
                 disabled={disabled}
                 type={type}
-                className={ `shadow-none bg-bg_default focus:ring-0 w-full rounded-input  border border-border_default text-gray-500 p-3 ${className}`}
+                className={ `shadow-none bg-transparent focus:ring-0 w-full rounded-input border-2 border-border_default placeholder-white/40  p-4 ${className}`}
             />
             {error && <p className="text-sm text-red-500">{error}</p>}
         </div>

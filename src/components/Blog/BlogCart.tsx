@@ -19,11 +19,11 @@ const BlogCart: React.FC<CardProps> = ({
   return (
     <>
       <Link to={`/blog/${id}`}>
-        <div className=" p-4 grid grid-cols-2 ">
+        <div className=" p-4 grid grid-cols-1 md:grid-cols-2 ">
           <div className="col-span-1  w-full h-full  rounded-image object-cover mb-2 overflow-hidden">
             <img src={image} alt="Gift Card" />
           </div>
-          <div className="text-white flex flex-col justify-center px-4 ">
+          <div className="text-white flex flex-col justify-center md:px-4 gap-1 mt-3 md:mt-0">
             <div className=" flex items-center space-x-2">
               <h3 className="font-chillax font-normal text-sm text-text_primary">
                 {Date}

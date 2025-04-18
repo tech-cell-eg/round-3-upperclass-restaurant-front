@@ -6,7 +6,7 @@ import { Footer } from "./Footer";
 const ContentShop = () => {
   const cardsdata = [
     {
-      
+      id: "1",
       price: "$ 50 USD",
       title: "Gift Card",
       description:
@@ -43,7 +43,7 @@ const ContentShop = () => {
     },
   ];
   return (
-    <main className="p-8 md:h-screen md:overflow-y-auto bg-black text-white">
+    <main className="md:p-8 md:h-screen md:overflow-y-auto bg-black text-white">
       {cardsdata.map((card, index) => (
         <CardShop
           key={index}

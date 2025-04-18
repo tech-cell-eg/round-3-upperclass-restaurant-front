@@ -10,7 +10,7 @@ const ContentShopDetails = () => {
     const options = ["red", "blue", "green"];
     return <>
         <main className="p-8 md:h-screen md:overflow-y-auto bg-black text-white">
-        <div className="p-8 flex flex-col gap-10 font-Chillax">
+        <div className="md:p-8 flex flex-col gap-10 font-Chillax">
                 <div className="flex flex-col gap-3" >
                     <p className="text-text_primary text-lg">Gift Cards</p> 
                     <h1 className="font-medium text-5xl tracking-wide ">Gift Card Light</h1>

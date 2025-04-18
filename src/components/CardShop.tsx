@@ -8,8 +8,8 @@ interface CardShopProps {
 const CardShop : React.FC<CardShopProps> = ({price, title, description, image}) => {
     return <>
             <div>
-                <div className=" p-5 grid grid-cols-2 ">
-                    <div className="col-span-1   ">
+                <div className=" p-5 grid grid-cols-1 md:grid-cols-2 ">
+                    <div className="col-span-1">
                         <img src={image} alt="Gift Card" className="w-full h-auto  rounded-image object-cover mb-2" />
                     </div>
                     <div className="text-white col-span-1 py-6 px-4 text-start ">
