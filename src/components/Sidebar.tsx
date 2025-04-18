@@ -1,5 +1,6 @@
 // src/components/Sidebar.tsx
 import React from "react";
+import NavBar from "./NavBar";
 
 interface sildebarProps {
   background: string;
@@ -32,15 +33,8 @@ const Sidebar: React.FC<sildebarProps> = ({ title, subtitle, background }) => {
       </div>
 
       <div className="nav flex space-x-4 text-center justify-center ">
-        <a href="" className="text-white">
-          Home
-        </a>
-        <a href="" className="text-white">
-          Home
-        </a>
-        <a href="" className="text-white">
-          Home
-        </a>
+        <NavBar/>
+
       </div>
     </aside>
   );
