@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 //import image from "../../assets/images/MenuB(images).png";
 import { Footer } from "../Footer";
-
 //  Types
 interface MenuItem {
   name: string;
@@ -14,7 +13,6 @@ interface MenuItem {
   highlight?: boolean;
   category: string;
 }
-
 interface MenuCategory {
   category: string;
   items: MenuItem[];
