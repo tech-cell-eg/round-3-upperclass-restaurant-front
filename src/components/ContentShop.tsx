@@ -6,35 +6,36 @@ import { Footer } from "./Footer";
 const ContentShop = () => {
   const cardsdata = [
     {
-      price: "20$",
+      id: "1",
+      price: "$ 50 USD",
       title: "Gift Card",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
       image: image,
     },
     {
-      price: "20$",
+      price: "$ 50 USD",
       title: "Gift Card",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
       image: image,
     },
     {
-      price: "20$",
+      price: "$ 50 USD",
       title: "Gift Card",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
       image: image,
     },
     {
-      price: "20$",
+      price: "$ 50 USD",
       title: "Gift Card",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
       image: image,
     },
     {
-      price: "20$",
+      price: "$ 50 USD",
       title: "Gift Card",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
@@ -42,7 +43,7 @@ const ContentShop = () => {
     },
   ];
   return (
-    <main className="p-8 md:h-screen md:overflow-y-auto bg-black text-white">
+    <main className="md:p-8 md:h-screen md:overflow-y-auto bg-black text-white">
       {cardsdata.map((card, index) => (
         <CardShop
           key={index}

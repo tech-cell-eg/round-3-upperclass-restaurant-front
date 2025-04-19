@@ -5,6 +5,7 @@ import image3 from "../../assets/images/blog/3.png";
 import image4 from "../../assets/images/blog/4.png";
 import image5 from "../../assets/images/blog/5.png";
 import BlogCart from "./BlogCart";
+
 export const cardsdata = [
   {
     id: "1",
@@ -50,7 +51,7 @@ export const cardsdata = [
 const ContentBlog = () => {
   return (
     <>
-      <main className="p-8 md:h-screen md:overflow-y-auto bg-black text-white">
+      <main className="md:p-8 md:h-screen md:overflow-y-auto bg-black text-white">
         {cardsdata.map((card, index) => (
           <BlogCart
             key={index}

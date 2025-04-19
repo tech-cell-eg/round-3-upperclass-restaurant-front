@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
       <img
         src={homeBg}
         alt="background"
-        className="absolute w-full h-full inset-0 object-cover opacity-1 z-0"
+        className="absolute w-full h-full inset-0 object-cover opacity-40 z-0"
       />
 
       {/* Logo */}
@@ -43,7 +43,7 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* NavBar Section */}
-        <NavBar />
+        <NavBar  />
 
     </motion.div>
   );
