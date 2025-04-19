@@ -1,125 +1,72 @@
 import { useEffect, useState } from "react";
-import image from "../../assets/images/MenuB(images).png";
+import axios from "axios";
+//import image from "../../assets/images/MenuB(images).png";
 import { Footer } from "../Footer";
 
+//  Types
+interface MenuItem {
+  name: string;
+  description: string;
+  price: number;
+  originalPrice?: number;
+  image: string;
+  tag?: string;
+  highlight?: boolean;
+  category: string;
+}
+
+interface MenuCategory {
+  category: string;
+  items: MenuItem[];
+}
+
 const Mcontent = () => {
-  const menuData = [
-    {
-      category: "Starters",
-      items: [
-        {
-          name: "Tomato Toast",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 29,
-          image: image,
-          tag: "",
-        },
-        {
-          name: "Noodle Soup",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 5,
-          originalPrice: 8,
-          image: image,
-          tag: "",
-        },
-        {
-          name: "Pumpkin Soup",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 5,
-          image: image,
-          tag: "Starter of the Day",
-          highlight: true,
-        },
-      ],
-    },
-    {
-      category: "Breakfast",
-      items: [
-        {
-          name: "Tomato Toast",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 29,
-          image: image,
-          tag: "",
-        },
-        {
-          name: "Noodle Soup",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 5,
-          originalPrice: 8,
-          image: image,
-          tag: "",
-        },
-        {
-          name: "Pumpkin Soup",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 5,
-          image: image,
-          tag: "Starter of the Day",
-          highlight: true,
-        },
-      ],
-    },
-    {
-      category: "Lunch",
-      items: [
-        {
-          name: "Tomato Toast",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 29,
-          image: image,
-          tag: "",
-        },
-        {
-          name: "Noodle Soup",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 5,
-          originalPrice: 8,
-          image: image,
-          tag: "Starter of the Day",
-        },
-        {
-          name: "Pumpkin Soup",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 5,
-          image: image,
-          tag: "",
-        },
-      ],
-    },
-    {
-      category: "Drinks",
-      items: [
-        {
-          name: "Tomato Toast",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 29,
-          image: image,
-          tag: "Starter of the Day",
-          highlight: true,
-        },
-        {
-          name: "Noodle Soup",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 5,
-          originalPrice: 8,
-          image: image,
-          tag: "",
-        },
-        {
-          name: "Pumpkin Soup",
-          description: "Lorem ipsum dolor sit amet, consectetur",
-          price: 5,
-          image: image,
-          tag: "",
-        },
-      ],
-    },
-  ];
+  const [menuData, setMenuData] = useState<MenuCategory[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const sections = ["starters", "breakfast", "lunch", "drinks"];
   const [activeTab, setActiveTab] = useState(sections[0]);
 
+  // Axios call
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://round-3-upper-restaurant.digital-vision-solutions.com/api/menu-items"
+        );
+
+        if (response.data.status) {
+          const rawItems: MenuItem[] = response.data.data;
+
+          const groupedData: MenuCategory[] = sections.map((category) => ({
+            category: category.charAt(0).toUpperCase() + category.slice(1),
+            items: rawItems.filter(
+              (item) => item.category.toLowerCase() === category
+            ),
+          }));
+
+          setMenuData(groupedData);
+        }
+      } catch (err) {
+        console.error("Error fetching menu:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+
+    
+  }, []);
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-black text-white">
+        <p className="text-lg animate-pulse">Loading menu...</p>
+      </div>
+    );
+  }
+
+  //  Intersection Observer
   useEffect(() => {
     const options = {
       root: null,
@@ -149,53 +96,54 @@ const Mcontent = () => {
   }, []);
 
   return (
-    
-    <div id="menu-scroll" className="h-full relative md:h-screen md:overflow-y-auto bg-black text-white">
-      {/*  TabMenu */}
-      <div className="sticky top-0
- mb-10 px-4 py-4 z-[1000] bg-black text-white flex justify-center">
+    <div
+      id="menu-scroll"
+      className="h-full relative md:h-screen md:overflow-y-auto bg-black text-white"
+    >
+      {/* Tab Menu */}
+      <div className="sticky top-0 mb-10 px-4 py-4 z-[1000] bg-black text-white flex justify-center">
         {sections.map((section) => (
           <a
-  key={section}
-  href={`#${section}`}
-  onClick={(e) => {
-    e.preventDefault();
-    const el = document.getElementById(section) as HTMLElement;
-    const scrollContainer = document.getElementById("menu-scroll") as HTMLElement;
-  
-    if (el && scrollContainer) {
-      const offset = 80;
-      const top = el.getBoundingClientRect().top + scrollContainer.scrollTop - offset;
-
-      
-      scrollContainer.scrollTo({
-        top: top,
-        behavior: "smooth",
-      });
-    }
-  }}
-  
-  
-  className={`text-sm capitalize px-3 py-1 rounded-md transition-all duration-300 ${
-    activeTab === section
-      ? "text-text_primary"
-      : "text-gray-400 hover:text-white"
-  }`}
->
-  {section}
-</a>
-
+            key={section}
+            href={`#${section}`}
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById(section) as HTMLElement;
+            
+              if (el) {
+                const offset = 80;
+                const isSmallScreen = window.innerWidth < 768;
+            
+                const top = el.getBoundingClientRect().top + (isSmallScreen ? window.scrollY : document.getElementById("menu-scroll")!.scrollTop) - offset;
+            
+                (isSmallScreen ? window : document.getElementById("menu-scroll")!).scrollTo({
+                  top,
+                  behavior: "smooth",
+                });
+            
+                setActiveTab(section);
+              }
+            }}
+            
+            className={`text-sm capitalize px-3 py-1 rounded-md transition-all duration-300 ${
+              activeTab === section
+                ? "text-text_primary"
+                : "text-gray-400 hover:text-white"
+            }`}
+          >
+            {section}
+          </a>
         ))}
       </div>
 
       {/* Sections */}
-      <div className="px-4  sm:px-11 mt-10">
+      <div className="px-4 sm:px-11 mt-10">
         {menuData.map((section) => (
           <div
             key={section.category}
             id={section.category.toLowerCase()}
             className="mb-16 scroll-mt-32 sm:scroll-mt-52"
-            >
+          >
             <h2 className="text-2xl font-bitter text-text_primary font-bold mb-6">
               {section.category}
             </h2>
@@ -244,7 +192,7 @@ const Mcontent = () => {
                             ${item.originalPrice}
                           </p>
                           <p className="text-lg text-text_primary font-bold">
-                            ${item.price}
+                            ${item.price.toFixed(2)}
                           </p>
                         </div>
                       ) : (
@@ -260,10 +208,10 @@ const Mcontent = () => {
           </div>
         ))}
       </div>
-      <div className="p-8">
-      <Footer/>
-      </div>
 
+      <div className="p-8">
+        <Footer />
+      </div>
     </div>
   );
 };
