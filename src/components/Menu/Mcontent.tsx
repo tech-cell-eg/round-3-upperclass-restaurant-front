@@ -55,9 +55,42 @@ const Mcontent = () => {
     };
 
     fetchData();
-
-    
   }, []);
+
+
+ // Intersection Observer
+useEffect(() => {
+  const sections = ["starters", "breakfast", "lunch", "drinks"];
+
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.4,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setActiveTab(entry.target.id);
+      }
+    });
+  }, options);
+
+  sections.forEach((section) => {
+    const el = document.getElementById(section);
+    if (el) observer.observe(el);
+  });
+
+  return () => {
+    sections.forEach((section) => {
+      const el = document.getElementById(section);
+      if (el) observer.unobserve(el);
+    });
+  };
+}, []);
+
+
+
   if (loading) {
     return (
       <div className="h-screen flex items-center justify-center bg-black text-white">
@@ -66,34 +99,6 @@ const Mcontent = () => {
     );
   }
 
-  //  Intersection Observer
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.4,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveTab(entry.target.id);
-        }
-      });
-    }, options);
-
-    sections.forEach((section) => {
-      const el = document.getElementById(section);
-      if (el) observer.observe(el);
-    });
-
-    return () => {
-      sections.forEach((section) => {
-        const el = document.getElementById(section);
-        if (el) observer.unobserve(el);
-      });
-    };
-  }, []);
 
   return (
     <div
