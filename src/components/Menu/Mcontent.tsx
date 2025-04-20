@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 //import image from "../../assets/images/MenuB(images).png";
 import { Footer } from "../Footer";
+
 //  Types
 interface MenuItem {
   name: string;
@@ -13,6 +14,7 @@ interface MenuItem {
   highlight?: boolean;
   category: string;
 }
+
 interface MenuCategory {
   category: string;
   items: MenuItem[];
@@ -54,6 +56,41 @@ const Mcontent = () => {
 
     fetchData();
   }, []);
+
+
+ //  Intersection Observer
+ useEffect(() => {
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.4,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setActiveTab(entry.target.id);
+      }
+    });
+  }, options);
+
+  sections.forEach((section) => {
+    const el = document.getElementById(section);
+    if (el) observer.observe(el);
+  });
+
+  return () => {
+    sections.forEach((section) => {
+      const el = document.getElementById(section);
+      if (el) observer.unobserve(el);
+    });
+  };
+}, []);
+
+
+
+
+
   if (loading) {
     return (
       <div className="h-screen flex items-center justify-center bg-black text-white">
@@ -61,34 +98,7 @@ const Mcontent = () => {
       </div>
     );
   }
-  //  Intersection Observer
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.4,
-    };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveTab(entry.target.id);
-        }
-      });
-    }, options);
-
-    sections.forEach((section) => {
-      const el = document.getElementById(section);
-      if (el) observer.observe(el);
-    });
-
-    return () => {
-      sections.forEach((section) => {
-        const el = document.getElementById(section);
-        if (el) observer.unobserve(el);
-      });
-    };
-  }, []);
 
   return (
     <div

@@ -1,17 +1,15 @@
-import "../../index.css";
-import menuImage from "../../assets/images/MenuImage.png";
-import Sidebar from "../Sidebar"
-import Mcontent from "./Mcontent";
+import Sidebar from "../../components/Sidebar";
+import image from "../../assets/images/MenuImage.png";
+import Mcontent from "../Menu/Mcontent";
 
-
-const Menu: React.FC = () => {
+const Menu = () => {
   return (
-    <div className="grid grid-cols-1 h-screen md:grid-cols-2">
-      <Sidebar background={menuImage} title="menu" subtitle="check out"   />
-
-      <Mcontent/>
-
-    </div>
+    <>
+      <div className="grid grid-cols-1 h-screen md:grid-cols-2">
+        <Sidebar title="Check Out" subtitle="Our Menu" background={image} />
+        <Mcontent />
+      </div>
+    </>
   );
 };
 

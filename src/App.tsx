@@ -5,7 +5,7 @@ import Sidebar from "./components/Sidebar";
 import image from "../src/assets/images/shopmain.png";
 import Shop from "./pages/Shop";
 import HomePage from "./pages/Home";
-import Menu from './components/Menu/Menu';
+import Menu from "./components/Menu/Menu";
 import Layout from './Layout';
 import Book from './components/Book/Book';
 import Contact from "./pages/Contact";
