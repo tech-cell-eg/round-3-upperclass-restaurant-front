@@ -185,15 +185,15 @@ const cartRef = useRef<HTMLDivElement>(null);
   <button onClick={() => setIsCartOpen(true)}>
   <i className="pi pi-shopping-cart text-icon_inverse text-xl"></i>
 </button>
-      <Link to="menu" className="font-chillax text-text_inverse hidden md:block">
+      <Link to="menu" className="font-chillax text-text_inverse  hidden lg:block">
         Menu
       </Link>
-      <Link to="/restaurant" className="font-chillax text-text_inverse hidden md:block">
+      <Link to="/restaurant" className="font-chillax text-text_inverse  hidden lg:block">
         Restaurant
       </Link>
       <Link
         to="/classes"
-        className="font-chillax text-text_inverse hidden md:block"
+        className="font-chillax text-text_inverse  hidden lg:block"
       >
         Classes
       </Link>
