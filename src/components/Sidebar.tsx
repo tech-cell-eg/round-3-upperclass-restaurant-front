@@ -1,7 +1,8 @@
 // src/components/Sidebar.tsx
 import React from "react";
 import NavBar from "./NavBar";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import useFetchShopDetails from "../hooks/useFetchShopDetails";
 
 interface sildebarProps {
   background: string;
@@ -10,7 +11,12 @@ interface sildebarProps {
 }
 
 const Sidebar: React.FC<sildebarProps> = ({ title, subtitle, background }) => {
-  console.log(background);
+  const { id } = useParams<{ id: string }>()
+  console.log(id);
+  const { loading } = useFetchShopDetails(Number(id))
+
+
+
   return (
     <aside
       className="bg-black  h-screen p-8 grid grid-rows-[auto_1fr_auto] overflow-hidden"
@@ -34,7 +40,7 @@ const Sidebar: React.FC<sildebarProps> = ({ title, subtitle, background }) => {
           <p className="font-bitter text-6xl font-normal text-center text-text_primary">
             {title}
           </p>
-          <h1 className="font-chillax text-4xl md:text-7xl font-medium">{subtitle}</h1>
+          {loading ? <p className="font-chillax text-2xl font-medium text-center text-text_default">Loading...</p> : <p className="font-Chillax text-4xl md:text-7xl font-medium">{subtitle}</p>}
         </div>
       </div>
 
