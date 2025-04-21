@@ -1,54 +1,27 @@
 // import CardShop from './CardShop';
-import image from "../assets/images/shopcard1.png";
+// import image from "../assets/images/shopcard1.png";
+import useFetchAllShop from "../hooks/useFetchAllShop";
 import CardShop from "./CardShop";
 import { Footer } from "./Footer";
 
+
 const ContentShop = () => {
-  const cardsdata = [
-    {
-      id: "1",
-      price: "$ 50 USD",
-      title: "Gift Card",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
-      image: image,
-    },
-    {
-      price: "$ 50 USD",
-      title: "Gift Card",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
-      image: image,
-    },
-    {
-      price: "$ 50 USD",
-      title: "Gift Card",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
-      image: image,
-    },
-    {
-      price: "$ 50 USD",
-      title: "Gift Card",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
-      image: image,
-    },
-    {
-      price: "$ 50 USD",
-      title: "Gift Card",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
-      image: image,
-    },
-  ];
+  const {shop, loading, error:errorShop} = useFetchAllShop()
+  if (errorShop) {
+    return <p className="flex items-center justify-center bg-black text-text_default">{errorShop}</p>;
+  }
+  if (loading) {
+    return <p className="flex items-center justify-center bg-black text-text_default">Loading...</p>;
+  }
+
   return (
     <main className="md:p-8 md:h-screen md:overflow-y-auto bg-black text-white">
-      {cardsdata.map((card, index) => (
+      {shop.map((card, index) => (
         <CardShop
+          id={card.id}
           key={index}
           title={card.title}
-          price={card.price}
+          price={`$ ${card.price} USD`}
           description={card.description}
           image={card.image}
         />
