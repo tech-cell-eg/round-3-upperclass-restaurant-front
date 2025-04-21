@@ -7,16 +7,7 @@ import useFetchShopDetails from "../hooks/useFetchShopDetails";
 
 const ShopDetails = () => {
   const { id } = useParams<{ id: string }>()
-  console.log(id);
-  const { shopDetails, loading, error: errorShopdetails } = useFetchShopDetails(Number(id))
-
-  if (errorShopdetails) {
-      return <p className="flex items-center justify-center bg-black text-text_default">{errorShopdetails}</p>;
-  }
-  if (loading) {
-      return <p className="flex items-center justify-center bg-black text-text_default">Loading...</p>;
-  }
-
+  const { shopDetails} = useFetchShopDetails(Number(id))
   return <>
       <div className="grid grid-cols-1 h-screen md:grid-cols-2">
           <Sidebar title="Gift " subtitle={shopDetails.title} background={image} />
