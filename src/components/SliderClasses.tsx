@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import image1 from "../assets/images/classes/1.jpeg"
-import image2 from "../assets/images/classes/2.jpeg"
-import image3 from "../assets/images/classes/3.jpeg"
-import image4 from "../assets/images/classes/4.jpeg"
-import image5 from "../assets/images/classes/5.jpeg"
+import image1 from "../assets/images/classes/1.jpeg";
+import image2 from "../assets/images/classes/2.jpeg";
+import image3 from "../assets/images/classes/3.jpeg";
+import image4 from "../assets/images/classes/4.jpeg";
+import image5 from "../assets/images/classes/5.jpeg";
+
+import NavBar from "./NavBar";
 
 export default function SliderClasses() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -14,31 +16,31 @@ export default function SliderClasses() {
       title: "Delicious Breakfast",
       category: "Asian",
       date: "June 16, 2023",
-      image: image1
+      image: image1,
     },
     {
       title: "Coffee Time",
       category: "Breakfast",
       date: "March 17, 2023",
-      image: image2
+      image: image2,
     },
     {
       title: "Vegan Burger",
       category: "Healthy",
       date: "January 10, 2023",
-      image: image3
+      image: image3,
     },
     {
       title: "Salad Style",
       category: "Italian",
       date: "November 12, 2022",
-      image: image4
+      image: image4,
     },
     {
       title: "Homemade Honey",
       category: "Italian",
       date: "October 8, 2022",
-      image: image5
+      image: image5,
     },
   ];
 
@@ -59,6 +61,12 @@ export default function SliderClasses() {
       ref={containerRef}
       className=" overflow-x-scroll overflow-y-hidden scroll-smooth no-scrollbar "
     >
+      {/* Logo */}
+      <Link to="/" className="fixed z-50 w-full justify-center text-center">
+        <p className="font-chillax mt-10 text-2xl sm:text-3xl font-medium text-text_default">
+          nique.
+        </p>
+      </Link>
       <div className="flex w-max  ">
         {slides.map((slide, idx) => (
           <div key={idx} className="relative w-[30rem] h-screen flex-shrink-1">
@@ -69,7 +77,7 @@ export default function SliderClasses() {
               loading="lazy"
             />
             <div className="absolute inset-0 w-[30rem] bg-black bg-opacity-40 flex items-center justify-center">
-              <Link to={`/classesdetail/${slide.category}`} >
+              <Link to={`/classesdetail/${slide.category}`}>
                 <div className="text-white text-center space-y-2 ">
                   <p className="text-xl text-yellow-300 font-semibold">
                     {slide.category}
@@ -84,6 +92,7 @@ export default function SliderClasses() {
           </div>
         ))}
       </div>
+      <NavBar />
     </div>
   );
 }
