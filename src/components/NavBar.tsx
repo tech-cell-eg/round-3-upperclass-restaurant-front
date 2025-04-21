@@ -81,7 +81,7 @@ const cartRef = useRef<HTMLDivElement>(null);
                 </li>
                 <li>
                   <Link
-                    to="#"
+                    to="/restaurant"
                     className="flex text-text_inverse justify-between items-center px-4 py-2 hover:bg-gray-100 font-chillax"
                   >
                     Restaurant <i className="pi pi-arrow-right"></i>
@@ -185,22 +185,22 @@ const cartRef = useRef<HTMLDivElement>(null);
   <button onClick={() => setIsCartOpen(true)}>
   <i className="pi pi-shopping-cart text-icon_inverse text-xl"></i>
 </button>
-      <Link to="Menu" className="font-chillax text-text_inverse hidden md:block">
+      <Link to="menu" className="font-chillax text-text_inverse  hidden lg:block">
         Menu
       </Link>
-      <Link to="#" className="font-chillax text-text_inverse hidden md:block">
+      <Link to="/restaurant" className="font-chillax text-text_inverse  hidden lg:block">
         Restaurant
       </Link>
       <Link
         to="/classes"
-        className="font-chillax text-text_inverse hidden md:block"
+        className="font-chillax text-text_inverse  hidden lg:block"
       >
         Classes
       </Link>
       <button 
       onClick={goToBook} 
       className="group relative bg-bg_default sm:text-base text-text_default px-4 py-2 rounded-full overflow-hidden h-10 w-40">
-        <div className="flex flex-col group-hover:animate-scrollUpDown">
+        <div className="flex flex-col transition-all duration-300 ease-in hover:translate-y-[-35px]">
           <span className="h-8 flex items-center justify-center">
             Book A Table
           </span>
