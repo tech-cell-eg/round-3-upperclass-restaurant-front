@@ -1,48 +1,34 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import image1 from "../assets/images/classes/1.jpeg";
-import image2 from "../assets/images/classes/2.jpeg";
-import image3 from "../assets/images/classes/3.jpeg";
-import image4 from "../assets/images/classes/4.jpeg";
-import image5 from "../assets/images/classes/5.jpeg";
-
+import axios from "axios";
 import NavBar from "./NavBar";
+
+interface ClassItem {
+  id: number;
+  title: string;
+  sub_title: string;
+  image: string;
+  date: string;
+}
 
 export default function SliderClasses() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [slides, setSlides] = useState<ClassItem[]>([]);
 
-  const slides = [
-    {
-      title: "Delicious Breakfast",
-      category: "Asian",
-      date: "June 16, 2023",
-      image: image1,
-    },
-    {
-      title: "Coffee Time",
-      category: "Breakfast",
-      date: "March 17, 2023",
-      image: image2,
-    },
-    {
-      title: "Vegan Burger",
-      category: "Healthy",
-      date: "January 10, 2023",
-      image: image3,
-    },
-    {
-      title: "Salad Style",
-      category: "Italian",
-      date: "November 12, 2022",
-      image: image4,
-    },
-    {
-      title: "Homemade Honey",
-      category: "Italian",
-      date: "October 8, 2022",
-      image: image5,
-    },
-  ];
+  useEffect(() => {
+    const fetchClasses = async () => {
+      try {
+        const response = await axios.get(
+          "https://round-3-upper-restaurant.digital-vision-solutions.com/api/classes"
+        );
+        setSlides(response.data.data);
+      } catch (error) {
+        console.error("Error fetching classes:", error);
+      }
+    };
+
+    fetchClasses();
+  }, []);
 
   useEffect(() => {
     const x = containerRef.current;
@@ -59,7 +45,7 @@ export default function SliderClasses() {
   return (
     <div
       ref={containerRef}
-      className=" overflow-x-scroll overflow-y-hidden scroll-smooth no-scrollbar "
+      className="overflow-x-scroll overflow-y-hidden scroll-smooth no-scrollbar"
     >
       {/* Logo */}
       <Link to="/" className="fixed z-50 w-full justify-center text-center">
@@ -67,23 +53,27 @@ export default function SliderClasses() {
           nique.
         </p>
       </Link>
-      <div className="flex w-max  ">
-        {slides.map((slide, idx) => (
-          <div key={idx} className="relative w-[30rem] h-screen flex-shrink-1">
+
+      <div className="flex w-max">
+        {slides.map((slide) => (
+          <div
+            key={slide.id}
+            className="relative w-[30rem] h-screen flex-shrink-0"
+          >
             <img
               src={slide.image}
-              alt={slide.title}
+              alt={slide.sub_title}
               className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
             />
             <div className="absolute inset-0 w-[30rem] bg-black bg-opacity-40 flex items-center justify-center">
-              <Link to={`/classesdetail/${slide.category}`}>
-                <div className="text-white text-center space-y-2 ">
+              <Link to={`/classesdetail/${slide.id}`}>
+                <div className="text-white text-center space-y-2">
                   <p className="text-xl text-yellow-300 font-semibold">
-                    {slide.category}
+                    {slide.title}
                   </p>
                   <h2 className="text-2xl md:text-4xl font-bold">
-                    {slide.title}
+                    {slide.sub_title}
                   </h2>
                   <p className="text-sm">{slide.date}</p>
                 </div>
@@ -92,6 +82,7 @@ export default function SliderClasses() {
           </div>
         ))}
       </div>
+
       <NavBar />
     </div>
   );
