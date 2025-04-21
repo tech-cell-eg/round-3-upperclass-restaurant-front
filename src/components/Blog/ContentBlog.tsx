@@ -1,63 +1,50 @@
 import { Footer } from "../Footer";
-import image1 from "../../assets/images//blog/1.png";
-import image2 from "../../assets/images/blog/2.png";
-import image3 from "../../assets/images/blog/3.png";
-import image4 from "../../assets/images/blog/4.png";
-import image5 from "../../assets/images/blog/5.png";
 import BlogCart from "./BlogCart";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-export const cardsdata = [
-  {
-    id: "1",
-    Date: "September 19, 2022",
-    title: "Gatsby Night",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
-    image: image1,
-  },
-  {
-    id: "2",
-    Date: "September 19, 2022",
-    title: "Gift Card Standard",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
-    image: image2,
-  },
-  {
-    id: "3",
-    Date: "September 19, 2022",
-    title: "New Restaurant",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
-    image: image3,
-  },
-  {
-    id: "4",
-    Date: "September 19, 2022",
-    title: "Romantic Dinner",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
-    image: image4,
-  },
-  {
-    id: "5",
-    Date: "September 19, 2022",
-    title: "Brand New Kitchen",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptate?",
-    image: image5,
-  },
-];
+interface PostType {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  date: string;
+}
 const ContentBlog = () => {
+  const [cards, setCards] = useState<PostType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://round-3-upper-restaurant.digital-vision-solutions.com/api/posts"
+        );
+        setCards(response.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return <div className="text-white p-4">Loading...</div>;
+  } else if (!cards.length) {
+    return <div className="text-white p-4">No posts found.</div>;
+  }
+
   return (
     <>
       <main className="md:p-8 md:h-screen md:overflow-y-auto bg-black text-white">
-        {cardsdata.map((card, index) => (
+        {cards.map((card) => (
           <BlogCart
-            key={index}
-            id={card.id}
+            key={card.id}
+            id={card.id.toString()}
             title={card.title}
-            Date={card.Date}
+            Date={card.date}
             description={card.description}
             image={card.image}
           />
@@ -68,5 +55,4 @@ const ContentBlog = () => {
     </>
   );
 };
-
 export default ContentBlog;
