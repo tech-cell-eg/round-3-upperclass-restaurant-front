@@ -222,11 +222,13 @@
 
 /********************************************************* */
 
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Footer } from "../Footer";
+
 
 //  Types
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Footer } from "../../components/Footer";
+
 interface MenuItem {
   name: string;
   description: string;
@@ -237,6 +239,7 @@ interface MenuItem {
   highlight?: boolean;
   category: string;
 }
+
 interface MenuCategory {
   category: string;
   items: MenuItem[];
@@ -260,7 +263,7 @@ const Mcontent = () => {
           const rawItems: MenuItem[] = response.data.data;
 
           const groupedData: MenuCategory[] = sections.map((category) => ({
-            category: category.charAt(0).toUpperCase() + category.slice(1),
+            category: category,
             items: rawItems.filter(
               (item) => item.category.toLowerCase() === category
             ),
@@ -282,16 +285,21 @@ const Mcontent = () => {
   useEffect(() => {
     const options = {
       root: null,
-      threshold: 0.4,
+      rootMargin: "0px",
+      threshold: 0.3,
     };
-
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setActiveTab(entry.target.id);
+          const sectionId = entry.target.id.toLowerCase();
+          if (sections.includes(sectionId)) {
+            setActiveTab(sectionId);
+          }
         }
       });
     }, options);
+    
 
     sections.forEach((section) => {
       const el = document.getElementById(section);
@@ -324,22 +332,22 @@ const Mcontent = () => {
       <div className="sticky top-0 z-50 bg-black px-4 py-4 flex justify-center space-x-4">
         {sections.map((section) => (
           <button
-            key={section}
-            onClick={() => {
-              const el = document.getElementById(section);
-              if (el) {
-                el.scrollIntoView({ behavior: "smooth", block: "start" });
-                setActiveTab(section);
-              }
-            }}
-            className={`capitalize text-sm px-4 py-2 rounded-md transition ${
-              activeTab === section
-                ? "text-text_primary border-b-2 border-text_primary"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            {section}
-          </button>
+  key={section}
+  onClick={() => {
+    const el = document.getElementById(section);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }}
+  className={`capitalize text-sm px-4 py-2 rounded-md transition-colors duration-200 ${
+    activeTab === section
+      ? "text-text_primary border-b-2 border-text_primary"
+      : "text-gray-400 hover:text-white"
+  }`}
+>
+  {section}
+</button>
+
         ))}
       </div>
 
@@ -349,9 +357,9 @@ const Mcontent = () => {
           <div
             key={section.category}
             id={section.category.toLowerCase()}
-            className="mb-16 scroll-mt-32"
+            className="mb-16 scroll-mt-40"
           >
-            <h2 className="text-2xl font-bold text-text_primary mb-6">
+            <h2 className="text-2xl font-bold text-text_primary mb-6 capitalize">
               {section.category}
             </h2>
 
@@ -389,7 +397,8 @@ const Mcontent = () => {
                           {item.tag}
                         </span>
                       )}
-                      {item.originalPrice && item.originalPrice > item.price ? (
+                      {item.originalPrice &&
+                      item.originalPrice > item.price ? (
                         <>
                           <p className="text-red-400 line-through text-sm">
                             ${item.originalPrice}
