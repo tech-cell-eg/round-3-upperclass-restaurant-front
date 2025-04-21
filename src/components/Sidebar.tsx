@@ -10,7 +10,6 @@ interface sildebarProps {
 }
 
 const Sidebar: React.FC<sildebarProps> = ({ title, subtitle, background }) => {
-  console.log(background);
   return (
     <aside
       className="bg-black  h-screen p-8 grid grid-rows-[auto_1fr_auto] overflow-hidden"
