@@ -39,6 +39,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+        env:
+          VITE_BASE_URL: ${{secrets.VITE_BASE_URL}}
       - name: Create 404 page
         run: cp dist/index.html dist/404.html
       - name: Setup Pages
