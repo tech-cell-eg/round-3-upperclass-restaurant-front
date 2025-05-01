@@ -1,13 +1,25 @@
-import Sidebar from "../components/Sidebar"
-import image from "../assets/images/classes/1.jpeg"
-import ContentClassDetail from "../components/ContentClassDetail"
-const ClassDetail = () => {
-  return (
-        <div className="grid grid-cols-1 h-screen md:grid-cols-2 ">
-            <Sidebar title="blog" subtitle="Give a gift" background={image} />
-            <ContentClassDetail/>
-        </div>
-  )
-}
+import Sidebar from "../components/Sidebar";
+import ContentClassDetail from "../components/ContentClassDetail";
+import { useParams } from "react-router-dom";
+import useFetchClassDetails from "../hooks/useFetchClassDetails";
+import defaultImage from "../assets/images/classes/1.jpeg";
 
-export default ClassDetail
+const ClassDetail = () => {
+  const { id } = useParams<{ id: string }>();
+  const { classDetails, loading } = useFetchClassDetails(Number(id));
+
+  return (
+    <div className="grid grid-cols-1 h-screen md:grid-cols-2">
+      <Sidebar
+        title={loading ? "Class" : classDetails?.title || "Class"}
+        subtitle={
+          loading ? "Loading..." : classDetails?.sub_title || "Cooking Class"
+        }
+        background={classDetails?.image || defaultImage}
+      />
+      <ContentClassDetail />
+    </div>
+  );
+};
+
+export default ClassDetail;
