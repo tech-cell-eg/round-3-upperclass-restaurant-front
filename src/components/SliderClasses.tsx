@@ -22,6 +22,7 @@ export default function SliderClasses() {
           "https://round-3-upper-restaurant.digital-vision-solutions.com/api/classes"
         );
         setSlides(response.data.data);
+        console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching classes:", error);
       }

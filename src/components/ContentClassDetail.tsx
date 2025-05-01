@@ -75,44 +75,22 @@
 /************************************************** */
 //Api fetch for class detail
 
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ButtonFeild from "./ButtonFeild";
 import { Footer } from "./Footer";
+import useFetchClassDetails from "../hooks/useFetchClassDetails";
 
 const ContentClassDetail = () => {
-  const { id } = useParams();
-  interface ClassData {
-    title: string;
-    description: string;
-    price: number;
-    date: string;
-    teacher: {
-      name: string;
-      image: string;
-      description: string;
-    };
+  const { id } = useParams<{ id: string }>();
+  const { classDetails, loading, error } = useFetchClassDetails(Number(id));
+
+  if (error) {
+    return (
+      <div className="text-white p-8">Error loading class details: {error}</div>
+    );
   }
 
-  const [classData, setClassData] = useState<ClassData | null>(null);
-
-  useEffect(() => {
-    const fetchClassDetails = async () => {
-      try {
-        const res = await fetch(
-          `https://round-3-upper-restaurant.digital-vision-solutions.com/api/classes/${id}`
-        );
-        const data = await res.json();
-        setClassData(data.data);
-      } catch (error) {
-        console.error("Failed to fetch class details:", error);
-      }
-    };
-
-    fetchClassDetails();
-  }, [id]);
-
-  if (!classData) {
+  if (loading || !classDetails) {
     return <div className="text-white p-8">Loading...</div>;
   }
 
@@ -120,17 +98,21 @@ const ContentClassDetail = () => {
     <main className="p-8 md:h-screen md:overflow-y-auto bg-black text-white">
       <div className="md:p-5 flex flex-col gap-10 ">
         <div className="flex flex-col gap-3">
-          <p className="text-text_muted text-base">{classData.title} Class</p>
+          <p className="text-text_muted text-base">
+            {classDetails.title} Class
+          </p>
           <h1 className="font-medium text-5xl tracking-wide">
             Reserve your spot
           </h1>
-          <p className="text-text_muted text-lg/8 ">{classData.description}</p>
+          <p className="text-text_muted text-lg/8 ">
+            {classDetails.description}
+          </p>
         </div>
 
         <div className="flex flex-row gap-5 items-center ">
           <ButtonFeild label="BOOK A SPOT" className="w-1/3" />
           <span className="text-text_muted text-2xl pt-3">
-            $ {classData.price}
+            $ {classDetails.price}
           </span>
         </div>
 
@@ -141,7 +123,7 @@ const ContentClassDetail = () => {
 
           <div className="flex flex-row justify-between text-text_muted text-xl border-b pb-5 border-text_muted">
             <h2>Date</h2>
-            <p>{classData.date}</p>
+            <p>{classDetails.date}</p>
           </div>
 
           <div className="flex flex-row justify-between text-text_muted text-xl border-b pb-5 border-text_muted">
@@ -153,11 +135,11 @@ const ContentClassDetail = () => {
             <h2>Teacher</h2>
             <div className="flex flex-row gap-3 items-center">
               <img
-                src={classData.teacher.image}
+                src={classDetails.teacher.image}
                 alt="teacher"
                 className="w-10 h-10 rounded-full"
               />
-              <p>{classData.teacher.name}</p>
+              <p>{classDetails.teacher.name}</p>
             </div>
           </div>
 
@@ -181,13 +163,13 @@ const ContentClassDetail = () => {
         <div className="flex flex-col md:flex-row gap-5 items-center pt-10 justify-around">
           <div className="w-1/2 aspect-square">
             <img
-              src={classData.teacher.image}
+              src={classDetails.teacher.image}
               alt="teacher"
               className="w-full h-full rounded-full object-cover aspect-square"
             />
           </div>
           <p className="text-text_muted text-lg/8">
-            {classData.teacher.description}
+            {classDetails.teacher.description}
           </p>
         </div>
       </div>
